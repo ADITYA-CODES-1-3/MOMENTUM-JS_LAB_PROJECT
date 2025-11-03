@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Momentum - Advanced Task Manager</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+    <div class="app-container">
+        <div class="app-header">
+            <div class="logo">
+                <h1>Momentum</h1>
+            </div>
+            <p class="tagline">Task Management for Productivity</p>
+        </div>
+        
+        <div class="main-content">
+            <div class="sidebar">
+                <div class="stats-section">
+                    <div class="stat-card">
+                        <h3 id="totalTasks">0</h3>
+                        <p>Total Tasks</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3 id="completedTasks">0</h3>
+                        <p>Completed</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3 id="pendingTasks">0</h3>
+                        <p>Pending</p>
+                    </div>
+                </div>
+                
+                <div class="category-management">
+                    <div class="category-header">
+                        <h2 class="section-title">Categories</h2>
+                        <button class="add-category-btn" id="addCategoryBtn">
+                            <i class="fas fa-plus"></i> Add
+                        </button>
+                    </div>
+                    <div class="category-list" id="categoryList">
+                        <!-- Categories will be added here dynamically -->
+                    </div>
+                </div>
+            </div>
+            
+            <div class="task-section">
+                <div class="input-section">
+                    <input type="text" class="task-input" id="taskInput" placeholder="What needs to be done?">
+                    <select class="category-select" id="categorySelect">
+                        <option value="">Select Category</option>
+                    </select>
+                    <select class="priority-select" id="prioritySelect">
+                        <option value="low">Low Priority</option>
+                        <option value="medium" selected>Medium Priority</option>
+                        <option value="high">High Priority</option>
+                    </select>
+                    <input type="date" class="date-input" id="dueDateInput" min="">
+                    <button class="add-btn" id="addTaskBtn">
+                        <i class="fas fa-plus"></i> Add Task
+                    </button>
+                </div>
+                
+                <div class="filter-section">
+                    <button class="filter-btn active" data-filter="all">All Tasks</button>
+                    <button class="filter-btn" data-filter="pending">Pending</button>
+                    <button class="filter-btn" data-filter="completed">Completed</button>
+                    <button class="filter-btn" data-filter="high">High Priority</button>
+                    <button class="filter-btn" data-filter="today">Due Today</button>
+                    <button class="filter-btn" data-filter="week">Due This Week</button>
+                </div>
+                
+                <ul class="task-list" id="taskList">
+                    <!-- Tasks will be added here dynamically -->
+                </ul>
+            </div>
+            
+            <div class="calendar-sidebar">
+                <div class="calendar-container">
+                    <div class="calendar-header">
+                        <h2 class="section-title" id="currentMonth">Month Year</h2>
+                        <div class="calendar-nav">
+                            <button class="calendar-nav-btn" id="prevMonth">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <button class="calendar-nav-btn" id="nextMonth">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="calendar-grid" id="calendarGrid">
+                        <!-- Calendar will be generated here -->
+                    </div>
+                </div>
+                
+                <div class="upcoming-tasks">
+                    <h2 class="section-title">Upcoming Tasks</h2>
+                    <div id="upcomingTasksList">
+                        <!-- Upcoming tasks will be added here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Add Category Modal -->
+    <div class="modal" id="categoryModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Add New Category</h2>
+                <button class="close-modal" id="closeCategoryModal">&times;</button>
+            </div>
+            <div class="form-group">
+                <label for="categoryName">Category Name</label>
+                <input type="text" class="form-control" id="categoryName" placeholder="Enter category name">
+            </div>
+            <div class="form-group">
+                <label>Category Color</label>
+                <div class="color-options" id="colorOptions">
+                    <!-- Color options will be added here -->
+                </div>
+            </div>
+            <div class="btn-group">
+                <button class="btn btn-secondary" id="cancelCategory">Cancel</button>
+                <button class="btn btn-primary" id="saveCategory">Save Category</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Edit Task Modal -->
+    <div class="modal" id="editTaskModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Edit Task</h2>
+                <button class="close-modal" id="closeEditModal">&times;</button>
+            </div>
+            <div class="form-group">
+                <label for="editTaskText">Task Description</label>
+                <input type="text" class="form-control" id="editTaskText">
+            </div>
+            <div class="form-group">
+                <label for="editTaskCategory">Category</label>
+                <select class="form-control" id="editTaskCategory">
+                    <option value="">Select Category</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="editTaskPriority">Priority</label>
+                <select class="form-control" id="editTaskPriority">
+                    <option value="low">Low Priority</option>
+                    <option value="medium">Medium Priority</option>
+                    <option value="high">High Priority</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="editTaskDueDate">Due Date</label>
+                <input type="date" class="form-control" id="editTaskDueDate" min="">
+            </div>
+            <div class="btn-group">
+                <button class="btn btn-secondary" id="cancelEdit">Cancel</button>
+                <button class="btn btn-primary" id="saveEdit">Save Changes</button>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>Momentum | Innovation Lab Project - JS LAB</p>
+    </footer>
+
+    <script src="scripts/script.js"></script>
+</body>
+</html>
