@@ -144,6 +144,15 @@ function init() {
             editTaskModal.style.display = 'none';
         }
     });
+    // Export data
+    const exportDataBtn = document.getElementById('exportDataBtn');
+    const importDataBtn = document.getElementById('importDataBtn');
+    const importFileInput = document.getElementById('importFileInput');
+
+    exportDataBtn.addEventListener('click', exportData);
+    importDataBtn.addEventListener('click', () => importFileInput.click());
+    importFileInput.addEventListener('change', importData);
+
 }
 
 // Render color options as circles
@@ -765,6 +774,65 @@ function renderUpcomingTasks() {
         
         upcomingTasksList.appendChild(taskEl);
     });
+}
+function exportData() {
+    const data = {
+        tasks: tasks,
+        categories: categories,
+        exportedAt: new Date().toISOString()
+    };
+
+    const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `momentum_backup_${new Date().toISOString().split('T')[0]}.json`;
+    a.click();
+
+    URL.revokeObjectURL(url);
+    alert('Data exported successfully! Keep this file safe.');
+}
+function importData(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+
+    reader.onload = (e) => {
+        try {
+            const importedData = JSON.parse(e.target.result);
+            
+            if (!importedData.tasks || !importedData.categories) {
+                alert('Invalid file format! Please select a valid Momentum backup file.');
+                return;
+            }
+
+            if (!confirm('Importing will replace all your current data. Continue?')) return;
+
+            // Replace existing data
+            tasks = importedData.tasks;
+            categories = importedData.categories;
+
+            // Save to localStorage
+            saveTasks();
+            saveCategories();
+
+            // Refresh UI
+            renderTasks();
+            renderCategories();
+            populateCategorySelects();
+            updateStats();
+            renderCalendar();
+            renderUpcomingTasks();
+
+            alert('Data imported successfully!');
+        } catch (err) {
+            alert('Error importing data: ' + err.message);
+        }
+    };
+
+    reader.readAsText(file);
 }
 
 // Initialize the app when DOM is loaded
