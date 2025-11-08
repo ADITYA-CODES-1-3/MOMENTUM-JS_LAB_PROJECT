@@ -7,13 +7,12 @@ You can manage your tasks with **categories, priorities, and due dates**, view t
 > 🧠 *Innovation Lab Project — JS Lab*  
 > Developed by **Aditya K**
 
----
 
 ## 🖼️ Preview
 
 ![Momentum Screenshot](MOMENTUM.png)
 
----
+
 
 ## ✨ Key Features
 
@@ -45,7 +44,7 @@ Quickly filter tasks by:
 ### 💾 Local Data Storage
 - All data is saved automatically in your **browser’s localStorage** — no internet required.
 
----
+
 
 ## 🔁 Import & Export (New Feature)
 
@@ -63,7 +62,6 @@ Easily back up or transfer your tasks between devices.
 
 > 💡 *Perfect for backup or sharing your data across devices.*
 
----
 
 ## 🛠️ Tech Stack
 
@@ -73,76 +71,5 @@ Easily back up or transfer your tasks between devices.
 | **CSS3** | Styling & responsive design |
 | **JavaScript (ES6+)** | Logic, event handling, and data management |
 
----
 
-## 📁 Folder Structure
 
-MOMENTUM-JS_LAB_PROJECT/
-│
-├── index.html # Main HTML file
-├── styles/
-│ └── style.css # All styling rules
-├── scripts/
-│ └── script.js # JS logic (tasks, categories, import/export)
-├── MOMENTUM.png # Project screenshot
-└── README.md # Documentation
-
-yaml
-Copy code
-
----
-
-## 🚀 How to Run the Project
-
-You don’t need any setup or installation!
-
-### Step 1: Clone or Download
-```bash
-git clone https://github.com/ADITYA-CODES-1-3/MOMENTUM-JS_LAB_PROJECT.git
-cd MOMENTUM-JS_LAB_PROJECT
-Step 2: Open in Browser
-Double-click index.html, or
-
-Right-click → Open with Browser → Choose Chrome or Edge.
-
-🎉 That’s it! Your Momentum Task Manager is ready to use.
-
-🧭 How to Use
-Action	What to Do
-📝 Add Task	Enter details → Select category, priority, due date → Click “Add Task”
-✅ Complete Task	Check the box beside a task
-✏️ Edit Task	Click the edit (✏️) icon
-🗑️ Delete Task	Click the delete (🗑️) icon
-🧩 Filter Tasks	Use filter buttons (All, Pending, Today, High Priority, etc.)
-🎨 Manage Categories	Add category → Choose color → Save
-📅 Calendar	Click a date to see tasks due that day
-⏳ Upcoming Tasks	View tasks due within 7 days
-💾 Import/Export	Backup or restore your data easily
-
-💡 Tips for Best Experience
-Use Google Chrome for best performance.
-
-Bookmark the page for quick access.
-
-Regularly export your data for backup.
-
-Use categories and priorities to stay organized.
-
-Keep Momentum open while working to track progress.
-
-🚧 Future Enhancements
-🔐 Google Account Sync
-
-🌙 Dark / Light Mode
-
-🔍 Task Search
-
-🔁 Recurring Tasks
-
-⏰ Task Reminders & Notifications
-
-📱 PWA (Installable Web App)
-
-👨‍💻 Author
-Aditya K
-Innovation Lab Project — KG College of Arts and Science
